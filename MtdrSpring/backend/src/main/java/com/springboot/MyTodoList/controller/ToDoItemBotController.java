@@ -45,7 +45,6 @@ public class ToDoItemBotController extends TelegramLongPollingBot {
 	// allowed users
 	long allowedUserId = 8161138802L;
 
-
 	public ToDoItemBotController(String botToken, String botName, ToDoItemService toDoItemService, ProjectService projectService) {
 		super(botToken);
 		logger.info("Bot Token: " + botToken);
@@ -104,7 +103,7 @@ public class ToDoItemBotController extends TelegramLongPollingBot {
 						OffsetDateTime deliveryTs = OffsetDateTime.parse(fullDateTime);
 						pendingItem.setFinishesAt(deliveryTs);
 						pendingItem.setCreatedAt(OffsetDateTime.now());
-						pendingItem.setState("NOT_STARTED");
+						pendingItem.setState("TODO");
 						
 						// Ask for estimated hours
 						SendMessage messageToTelegram = new SendMessage();

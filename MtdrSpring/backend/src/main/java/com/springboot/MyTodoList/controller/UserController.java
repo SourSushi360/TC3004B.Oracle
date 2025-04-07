@@ -2,6 +2,7 @@ package com.springboot.MyTodoList.controller;
 
 import com.springboot.MyTodoList.model.User;
 import com.springboot.MyTodoList.service.UserService;
+import com.springboot.MyTodoList.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -62,5 +63,16 @@ public class UserController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+
+    @Autowired
+    private UserRepository userRepository;
+    
+    @GetMapping("/telegram")
+    public ResponseEntity<User> getUserByTelegramId(@RequestParam("id_Telegram") String id_Telegram) {
+        return userRepository.findByIdTelegram(id_Telegram)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

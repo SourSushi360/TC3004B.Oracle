@@ -2,6 +2,10 @@ package com.springboot.MyTodoList.model;
 
 import javax.persistence.*;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 @Entity
 @Table(name="USERS")
 public class User {
@@ -10,7 +14,7 @@ public class User {
     private int ID_User;
 
     @Column(name="ID_TELEGRAM")
-    private String id_Telegram;
+    private String idTelegram;
 
     @Column(name="NAME")
     private String name;
@@ -23,7 +27,7 @@ public class User {
 
     public User(int ID_User, String id_Telegram, String name, String position) {
         this.ID_User = ID_User;
-        this.id_Telegram = id_Telegram;
+        this.idTelegram = id_Telegram;
         this.name = name;
         this.position = position;
     }
@@ -37,11 +41,11 @@ public class User {
     }
 
     public String getID_Telegram() {
-        return id_Telegram;
+        return idTelegram;
     }
 
     public void setID_Telegram(String id_Telegram) {
-        this.id_Telegram = id_Telegram;
+        this.idTelegram = id_Telegram;
     }
 
     public String getName() {
@@ -59,12 +63,14 @@ public class User {
     public void setPosition(String position) {
         this.position = position;
     }
+    
+    
 
     @Override
     public String toString() {
         return "User{" +
                 "ID_User=" + ID_User +
-                ", id_Telegram='" + id_Telegram + '\'' +
+                ", id_Telegram='" + idTelegram + '\'' +
                 ", name='" + name + '\'' +
                 ", position='" + position + '\'' +
                 '}';
